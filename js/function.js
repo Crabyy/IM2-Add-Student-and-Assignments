@@ -18,7 +18,6 @@
         $('#editContactNo').val(contactNo);
     });
 
-
     $(document).ready(function () {
         // Add Student
         $("#studentForm").submit(function (event) {
@@ -95,8 +94,31 @@
                     }
                 });
             }
-
             
         }); 
+
+        $('#searchInput').on('input', function () {
+            var searchText = $(this).val().toLowerCase();
+            $('tbody tr').each(function () {
+                var studentId = $(this).find('td:nth-child(1)').text().toLowerCase();
+                var email = $(this).find('td:nth-child(2)').text().toLowerCase();
+                var firstName = $(this).find('td:nth-child(3)').text().toLowerCase();
+                var lastName = $(this).find('td:nth-child(4)').text().toLowerCase();
+                
+                if (
+                    studentId.includes(searchText) ||
+                    email.includes(searchText) ||
+                    firstName.includes(searchText) ||
+                    lastName.includes(searchText)
+                ) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+
         
+
     });

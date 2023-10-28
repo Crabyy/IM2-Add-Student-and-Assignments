@@ -129,6 +129,14 @@ if ($database->dbState()) {
 </div>
 
     </div>
+
+   <!-- Search Bar -->
+   <div class="col-md-3 offset-md-9">
+            <div class="form-group text-right">
+            <input type="text" id="searchInput" placeholder="Search" class="form-control">
+            </div>
+    </div>
+
     </div>
 
 <div style="max-width: 80rem; margin: 0 auto; overflow-x: auto;">

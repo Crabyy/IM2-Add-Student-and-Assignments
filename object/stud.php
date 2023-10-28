@@ -120,6 +120,29 @@ public function updateStudentWithProcedure($studData) {
     }
 }
 
-        
-    
+// Method to retrieve assignments for a specific student
+public function getStudentAssignments($stud_id) {
+    $stmt = $this->dbconn->prepare("SELECT sa.ass_id, sa.ass_name FROM stud_assignments sa
+        INNER JOIN stud_info si ON sa.stud_id = si.stud_id
+        WHERE sa.stud_id = :stud_id");
+    $stmt->bindParam(':stud_id', $stud_id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Method to update an assignment
+public function updateAssignment($assignment_id, $newAssignmentName) {
+    $stmt = $this->dbconn->prepare("UPDATE stud_assignments SET ass_name = :newAssignmentName WHERE ass_id = :assignment_id");
+    $stmt->bindParam(':assignment_id', $assignment_id);
+    $stmt->bindParam(':newAssignmentName', $newAssignmentName);
+    return $stmt->execute();
+}
+
+// Method to remove an assignment
+public function removeAssignment($assignment_id) {
+    $stmt = $this->dbconn->prepare("DELETE FROM stud_assignments WHERE ass_id = :assignment_id");
+    $stmt->bindParam(':assignment_id', $assignment_id);
+    return $stmt->execute();
+}
+
 }
